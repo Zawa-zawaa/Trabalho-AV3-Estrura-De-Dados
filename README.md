@@ -9,10 +9,12 @@
 | Nome | Matrícula |
 |------|-----------|
 | Ivan Ramos De Oliveira Mourao | 2250104079 |
-| Nome do Integrante 2 | 00000000 |
+| Gustavo Gomes Ferraz | 2250205363 |
 | Nome do Integrante 3 | 00000000 |
+| Nome do Integrante 4 | 00000000 |
+| Nome do Integrante 5 | 00000000 |
 
-**Turma:** XXXX
+**Turma:** A
 
 ---
 
