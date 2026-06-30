@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// nnnnnnn
-
 // Códigos de cor ANSI (Para garantir pontos de extras gerais com interface amigável)
 #define COR_VERMELHA "\x1b[31m"
 #define COR_AMARELA "\x1b[33m"
