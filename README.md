@@ -8,7 +8,7 @@
 
 | Nome | Matrícula |
 |------|-----------|
-| Nome do Integrante 1 | 00000000 |
+| Ivan Ramos De Oliveira Mourao | 2250104079 |
 | Nome do Integrante 2 | 00000000 |
 | Nome do Integrante 3 | 00000000 |
 
@@ -44,7 +44,7 @@
 
 ## Tema
 
-**Tema escolhido:** *[Inserir tema]*
+**Tema escolhido:** *Trabalho A — Listas Simples - Tema A3 - Triagem Hospitalar*
 
 ## Descrição
 
