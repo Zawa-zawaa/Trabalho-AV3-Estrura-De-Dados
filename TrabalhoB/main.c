@@ -16,9 +16,11 @@
 
 typedef struct Chamada{
     int protocolo;
+    char nome[255];
     char local[255];
     char tipo[100];
     char horario[50];
+    char telefonr[15]
 } Chamada;
 
 
@@ -90,13 +92,20 @@ int main(){
     char linha[100];
     
     while(fgets(linha,100,arquivo)){
-            
+        char *protocolo_str = strtok(linha, ",");
+        char *local = strtok(NULL, ",");
+        char *tipo_ocorrencia = strtok(NULL, ",");
+        char *horario = strtok(NULL, ",");
+
+        int protocolo = atoi(protocolo_str);
+
     }
-    
+    fclose(arquivo);
 
     int inputUser;
     do{
-        exibirMenu();
+        
+        
 
 
 
