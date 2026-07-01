@@ -70,7 +70,6 @@ em caso de empate na gravidade, deve ser considerada a menor senha.
 
 ```bash
 cd TrabalhoA
-make
 ```
 
 ou
@@ -122,7 +121,6 @@ consultar a última chamada corresponde a verificar o topo da pilha.
 
 ```bash
 cd TrabalhoB
-make
 ```
 
 ou
@@ -139,8 +137,8 @@ gcc *.c -o programa
 
 ### Observações
 
-- Observação 1
-- Observação 2
+- 5 dados ja Pre-Cadastrados
+
 
 ---
 
