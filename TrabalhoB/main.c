@@ -20,7 +20,7 @@ typedef struct Chamada{
     char local[255];
     char tipo_ocorrencia[100];
     char horario[6];
-    char telefone[15]
+    char telefone[15];
 } Chamada;
 
 
