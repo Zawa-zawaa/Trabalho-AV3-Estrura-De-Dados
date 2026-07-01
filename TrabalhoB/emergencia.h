@@ -15,39 +15,38 @@
 #define COR_VERDE "\x1b[32m"
 #define COR_RESET "\x1b[0m"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+
 // 🏥 3. Definição das Structs (Tema B2)
 typedef struct {
     int protocolo;            
-    char nome[50];     
+    char nome[50];    
     char endereco[100]; 
-    char telefone[15];  
     char tipoEmergencia[50]; 
-    time_t dataHora;
+    char dataHora[10];
+    char telefone[20];  
 }ChamadaEmergencia;
 
-typedef struct NoPilha {
-    ChamadaEmergencia dados;
-    struct NoPilha* proximo; 
-} NoPilha;
 
-typedef struct {
-    NoPilha* topo;
-} Pilha;
+// -- Prototipos --
 
-// 4. Protótipos das Funções Utilitárias e Multiplataforma
+// Menus -
+
 void limparTela();
 void pausarTela();
-int contarChamadas(Pilha* pilha);
-int protocoloExiste(Pilha* pilha, int protocoloBusca);
+void exibirMenu();
 
-// 5. Protótipos das Funções Principais (Requisitos Obrigatórios)
-void exibirMenu(Pilha* pilha);
-void empilharChamada(Pilha* pilha);
-void desempilharChamada(Pilha* pilha);
+//
 
-// 6. Protótipos de Persistência e Memória
-void salvarCSV(Pilha* pilha);
-void carregarCSV(Pilha* pilha);
-void liberarPilhaCSV(Pilha* pilha);
+// Utilitarios --
+int contarRegistros(FILE *arquivo);
+void lercsv(ChamadaEmergencia *Chamadas);
+void listarChamadas(ChamadaEmergencia *Chamadas,int quant);
+void consultarUltimaChamada(ChamadaEmergencia *Chamadas,int quant);
+void registrarChamada(ChamadaEmergencia **Chamadas,int *quant);
 
 #endif // EMERGENCIA_H  

@@ -1,137 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-// -- Define --
-#define COR_VERMELHA "\x1b[31m"
-#define COR_AMARELA "\x1b[33m"
-#define COR_VERDE "\x1b[32m"
-#define COR_RESET "\x1b[0m"
-
-//
+#include "emergencia.h"
 
 
 
-// -- Structs --
-
-typedef struct Chamada{
-    int protocolo;
-    char nome[255];
-    char local[255];
-    char tipo_ocorrencia[100];
-    char horario[6];
-    char telefone[15];
-} Chamada;
-
-
-
-
-//
-
-// -- variaveis globais --
-
-Chamada vetorChamadas[50];
-
-
-
-
-
-
-// -- Prototipos --
-void limparTela() {
-    #ifdef _WIN32
-        // Se o sistema for Windows (32 ou 64 bits)
-        system("cls");
-    #else
-        // Se o sistema for Linux ou macOS (Unix-like)
-        system("clear");
-    #endif
-}
-void pausarTela() {
-    printf("\n[Pressione ENTER para continuar...]");
-    
-    
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF); 
-    
-    getchar();
-}
-void exibirMenu() {
-    limparTela();
-    
-    printf(COR_AMARELA "========================================\n" COR_RESET);
-    printf(COR_VERMELHA "       Chamadas de Emergência (B3)\n" COR_RESET);
-    printf(COR_AMARELA "========================================\n" COR_RESET);
-    
-    printf(" 1 - Registrar chamada\n");
-    printf(" 2 - Consultar ultima chamada\n");
-    printf(" 3 - Atender Chamada\n");
-    printf(" 4 - Listar todas as chamadas\n");
-    printf(" 0 - Salvar e Sair\n");
-    printf(COR_AMARELA "========================================\n" COR_RESET);
-    printf(" Escolha uma opcao: ");
-}
-
-//
-
-/*
-typedef struct Chamada{
-    int protocolo;
-    char nome[255];
-    char local[255];
-    char tipo_ocorrencia[100];
-    char horario[6];
-    char telefone[15]
-} Chamada;
-*/
-
-
-int main(){
-
-    // -- Arquivo csv -- 
-
-    FILE *arquivo = fopen("dados_b.csv", "r");
-    char linha[100];
-    
-    while(fgets(linha,100,arquivo)){
-        
-        char *protocolo_str = strtok(linha, ",");
-        char *nome = strtok(NULL, ",");
-        char *local = strtok(NULL, ",");
-        char *tipo_ocorrencia = strtok(NULL, ",");
-        char *horario = strtok(NULL, ",");
-        char *telefone = strtok(NULL, ",");
-        int protocolo = atoi(protocolo_str);
-
-
-    }
+int main() {
+    FILE* arquivo = fopen("dados_b.csv", "r");
+    // contagem de dados e alocacao dinamica
+    int quant = contarRegistros(arquivo);
+    // o topo da pilha e quant-1 = 11
     fclose(arquivo);
+    ChamadaEmergencia* Chamadas = malloc(quant * sizeof(ChamadaEmergencia));
+    if (Chamadas == NULL) {
+        printf("Erro de memória.\n");
+        return 1;
+    }
 
+    lercsv(Chamadas);  // faz a leitura dos dados pra struct na memoria
+
+    // LOOP PRINCIPAL
     int inputUser;
-    do{
+    do {
         
-        
+        exibirMenu();
+        if (scanf("%d", &inputUser) != 1) {
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            inputUser = -1;
+        }
+        switch (inputUser) {
+            case 1:  // registrar chamada
+                registrarChamada(&Chamadas,&quant);
+                pausarTela();
+                break;
+
+
+            case 2:  // consultar ultima chamada
+                consultarUltimaChamada(Chamadas,quant);
+                pausarTela();
+                break;
+
+
+            case 3:  // atender chamada (excluir)
+
+
+                break;
+
+            case 4:  // listar todas as chamadas
+                listarChamadas(Chamadas, quant);
+                pausarTela();
+                
+
+                break;
+            case 0:
+                // Antes de sair, salva no CSV e libera a memória dinâmica
+                printf(COR_VERDE "\nSistema encerrado com seguranca. Ate logo!\n" COR_RESET);
+                break;
+            default:
+                printf(COR_AMARELA "\nOpcao invalida! Tente novamente.\n" COR_RESET);
+                pausarTela();
+        }
 
 
 
-
-        scanf("%d",&inputUser);
-    }while(inputUser);
+    } while (inputUser);
 
 
+    free(Chamadas);
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
