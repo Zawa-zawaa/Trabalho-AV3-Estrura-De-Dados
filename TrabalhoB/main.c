@@ -76,7 +76,7 @@ int main() {
 
 
 
-    } while (inputUser);
+    } while (inputUser != 0);
 
 
     free(Chamadas);

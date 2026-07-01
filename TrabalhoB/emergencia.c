@@ -139,22 +139,59 @@ void registrarChamada(ChamadaEmergencia** Chamadas, int* quant) {
     printf("\nDigite o Nome do Cliente: ");
     fgets(c.nome, sizeof(c.nome), stdin);
     c.nome[strcspn(c.nome, "\n")] = '\0';
+    if (strlen(c.nome) == 0) {
+        printf("Nome invalido!\n");
+        return;
+    }
 
     printf("Digite o Endereco: ");
     fgets(c.endereco, sizeof(c.endereco), stdin);
     c.endereco[strcspn(c.endereco, "\n")] = '\0';
+    if (strlen(c.endereco) == 0) {
+        printf("Endereco invalido!\n");
+        return;
+    }
 
     printf("Digite o Tipo da Emergencia: ");
     fgets(c.tipoEmergencia, sizeof(c.tipoEmergencia), stdin);
     c.tipoEmergencia[strcspn(c.tipoEmergencia, "\n")] = '\0';
+    if (strlen(c.tipoEmergencia) == 0) {
+        printf("Tipo de emergencia invalido!\n");
+        return;
+    }
 
-    printf("Digite o Horario: ");
+    printf("Digite o Horario (HH:MM): ");
     fgets(c.dataHora, sizeof(c.dataHora), stdin);
     c.dataHora[strcspn(c.dataHora, "\n")] = '\0';
+
+    if (strlen(c.dataHora) != 5 ||
+        c.dataHora[2] != ':' ||
+        c.dataHora[0] < '0' || c.dataHora[0] > '9' ||
+        c.dataHora[1] < '0' || c.dataHora[1] > '9' ||
+        c.dataHora[3] < '0' || c.dataHora[3] > '9' ||
+        c.dataHora[4] < '0' || c.dataHora[4] > '9') {
+        printf("Horario invalido! Use HH:MM\n");
+        return;
+    }
 
     printf("Digite o Telefone: ");
     fgets(c.telefone, sizeof(c.telefone), stdin);
     c.telefone[strcspn(c.telefone, "\n")] = '\0';
+
+    int len = strlen(c.telefone);
+
+    if (len < 8 || len > 15) {
+        printf("Telefone invalido!\n");
+        return;
+    }
+
+    // verifica se só tem números
+    for (int i = 0; i < len; i++) {
+        if (c.telefone[i] < '0' || c.telefone[i] > '9') {
+            printf("Telefone deve conter apenas numeros!\n");
+            return;
+        }
+    }
 
     (*quant)++;
 
@@ -213,6 +250,47 @@ void atenderChamada(ChamadaEmergencia** Chamadas, int* quant) {
 
 
         printf(COR_VERDE "\nStatus: FINALIZADO\n" COR_RESET);
+
+        
+        (*quant)--;
+
+        if (*quant == 0) {
+            free(*Chamadas);
+            *Chamadas = NULL;
+        } else {
+            ChamadaEmergencia* temp =
+                realloc(*Chamadas, (*quant) * sizeof(ChamadaEmergencia));
+
+            if (temp == NULL) {
+                printf("Erro de alocacao!\n");
+                return;
+            }
+
+            *Chamadas = temp;
+        }
+
+        
+        FILE* arquivo = fopen("dados_b.csv", "w");
+
+        if (arquivo == NULL) {
+            printf("Erro ao abrir arquivo!\n");
+            return;
+        }
+
+        fprintf(arquivo, "protocolo,nome,endereco,tipoEmergencia,dataHora,telefone\n");
+
+        for (int i = 0; i < (*quant); i++) {
+            fprintf(arquivo,
+                    "%d,%s,%s,%s,%s,%s\n",
+                    (*Chamadas)[i].protocolo,
+                    (*Chamadas)[i].nome,
+                    (*Chamadas)[i].endereco,
+                    (*Chamadas)[i].tipoEmergencia,
+                    (*Chamadas)[i].dataHora,
+                    (*Chamadas)[i].telefone);
+        }
+
+        fclose(arquivo);
 
     } else {
         printf("\nNenhuma chamada na fila.\n");
