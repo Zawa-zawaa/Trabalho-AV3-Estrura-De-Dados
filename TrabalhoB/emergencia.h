@@ -48,5 +48,6 @@ void lercsv(ChamadaEmergencia *Chamadas);
 void listarChamadas(ChamadaEmergencia *Chamadas,int quant);
 void consultarUltimaChamada(ChamadaEmergencia *Chamadas,int quant);
 void registrarChamada(ChamadaEmergencia **Chamadas,int *quant);
-
+void atenderChamada(ChamadaEmergencia **Chamadas,int *quant);
+void buscarChamada(ChamadaEmergencia *Chamadas,int quant);
 #endif // EMERGENCIA_H  

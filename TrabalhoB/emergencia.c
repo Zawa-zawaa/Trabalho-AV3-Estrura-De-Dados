@@ -30,6 +30,7 @@ void exibirMenu() {
     printf(" 2 - Consultar ultima chamada\n");
     printf(" 3 - Atender Chamada\n");
     printf(" 4 - Listar todas as chamadas\n");
+    printf(" 5 - Buscar Emergencia\n");
     printf(" 0 - Salvar e Sair\n");
     printf(COR_AMARELA "========================================\n" COR_RESET);
     printf(" Escolha uma opcao: ");
@@ -70,46 +71,69 @@ void lercsv(ChamadaEmergencia* Chamadas) {
 
 void listarChamadas(ChamadaEmergencia* Chamadas, int quant) {
     limparTela();
-    printf(COR_VERMELHA "--- LISTA DE CHAMADAS ---\n\n" COR_RESET);
+
+    printf(COR_VERMELHA "\n================ LISTA DE CHAMADAS ================\n" COR_RESET);
+
+    printf("-----------------------------------------------------------------------------------------------------\n");
+    printf("| %-8s | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+           "Prot", "Nome", "Endereco", "Tipo", "Data/Hora", "Telefone");
+    printf("-----------------------------------------------------------------------------------------------------\n");
+
     for (int i = 0; i < quant; i++) {
-        printf("Protocolo: %d\n", Chamadas[i].protocolo);
-        printf("Nome: %s\n", Chamadas[i].nome);
-        printf("Endereco: %s\n", Chamadas[i].endereco);
-        printf("Telefone: %s\n", Chamadas[i].telefone);
-        printf("Tipo: %s\n", Chamadas[i].tipoEmergencia);
-        printf("Data/Hora: %s\n", Chamadas[i].dataHora);
-        printf("\n\n");
+        printf("| %-8d | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+               Chamadas[i].protocolo,
+               Chamadas[i].nome,
+               Chamadas[i].endereco,
+               Chamadas[i].tipoEmergencia,
+               Chamadas[i].dataHora,
+               Chamadas[i].telefone);
     }
+
+    printf("-----------------------------------------------------------------------------------------------------\n");
 }
 
 void consultarUltimaChamada(ChamadaEmergencia* Chamadas, int quant) {
     limparTela();
-    printf(COR_VERMELHA "--- ULTIMA CHAMADA REGISTRADA ---\n\n" COR_RESET);
 
-    printf("Protocolo: %d\n", Chamadas[quant-1].protocolo);
-    printf("Nome: %s\n", Chamadas[quant-1].nome);
-    printf("Endereco: %s\n", Chamadas[quant-1].endereco);
-    printf("Telefone: %s\n", Chamadas[quant-1].telefone);
-    printf("Tipo: %s\n", Chamadas[quant-1].tipoEmergencia);
-    printf("Data/Hora: %s\n", Chamadas[quant-1].dataHora);
-    printf("\n\n");
+    printf(COR_VERMELHA "\n========= ULTIMA CHAMADA REGISTRADA =========\n" COR_RESET);
+
+    if (quant > 0) {
+        printf("-----------------------------------------------------------------------------------------------------\n");
+
+        printf("| %-8s | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+               "Prot", "Nome", "Endereco", "Tipo", "Data/Hora", "Telefone");
+        printf("-----------------------------------------------------------------------------------------------------\n");
+
+
+        printf("| %-8d | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+               Chamadas[quant - 1].protocolo,
+               Chamadas[quant - 1].nome,
+               Chamadas[quant - 1].endereco,
+               Chamadas[quant - 1].tipoEmergencia,
+               Chamadas[quant - 1].dataHora,
+               Chamadas[quant - 1].telefone);
+
+        printf("-----------------------------------------------------------------------------------------------------\n");
+
+    } else {
+        printf("\nNenhuma chamada cadastrada.\n");
+    }
 }
 
-void registrarChamada(ChamadaEmergencia **Chamadas,int *quant){
+void registrarChamada(ChamadaEmergencia** Chamadas, int* quant) {
     limparTela();
     printf(COR_VERMELHA "--- CADASTRAR EMERGENCIA ---\n\n" COR_RESET);
     ChamadaEmergencia c;
-    getchar(); // limpa o '\n' deixado pelo scanf
+    getchar();  // limpa o '\n' deixado pelo scanf
 
 
     // adicionar validacao depois
 
-    if (*quant == 0){
+    if (*quant == 0) {
         c.protocolo = 1001;
 
-    }else{
+    } else {
         c.protocolo = (*Chamadas)[(*quant) - 1].protocolo + 1;
-
     }
 
     printf("\nDigite o Nome do Cliente: ");
@@ -134,38 +158,108 @@ void registrarChamada(ChamadaEmergencia **Chamadas,int *quant){
 
     (*quant)++;
 
-    ChamadaEmergencia *temp = realloc(*Chamadas,(*quant) * sizeof(ChamadaEmergencia));
+    ChamadaEmergencia* temp = realloc(*Chamadas, (*quant) * sizeof(ChamadaEmergencia));
 
-    if(temp == NULL){
+    if (temp == NULL) {
         printf("alocacao falhou");
         return;
     }
     *Chamadas = temp;
-    
 
-    (*Chamadas)[(*quant)-1] = c;
 
-    FILE *arquivo = fopen("dados_b.csv", "w");
+    (*Chamadas)[(*quant) - 1] = c;
 
-    for(int i = 0;i<(*quant);i++){
-
+    FILE* arquivo = fopen("dados_b.csv", "w");
+    fprintf(arquivo, "protocolo,nome,endereco,tipoEmergencia,dataHora,telefone\n");
+    for (int i = 0; i < (*quant); i++) {
         fprintf(arquivo,
-            "%d,%s,%s,%s,%s,%s\n",
-            (*Chamadas)[i].protocolo,
-            (*Chamadas)[i].nome,
-            (*Chamadas)[i].endereco,
-            (*Chamadas)[i].tipoEmergencia,
-            (*Chamadas)[i].dataHora,
-            (*Chamadas)[i].telefone
+                "%d,%s,%s,%s,%s,%s\n",
+                (*Chamadas)[i].protocolo,
+                (*Chamadas)[i].nome,
+                (*Chamadas)[i].endereco,
+                (*Chamadas)[i].tipoEmergencia,
+                (*Chamadas)[i].dataHora,
+                (*Chamadas)[i].telefone
 
         );
-
     }
 
     fclose(arquivo);
+}
 
 
+void atenderChamada(ChamadaEmergencia** Chamadas, int* quant) {
+    if ((*quant) > 0) {
+        limparTela();
+
+        printf(COR_AMARELA "================ CHAMADA ATENDIDA ================\n" COR_RESET);
+
+        printf("-----------------------------------------------------------------------------------------------------\n");
+
+        printf("| %-8s | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+               "Prot", "Nome", "Endereco", "Tipo", "Data/Hora", "Telefone");
+        printf("-----------------------------------------------------------------------------------------------------\n");
 
 
+        printf("| %-8d | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+               (*Chamadas)[(*quant) - 1].protocolo,
+               (*Chamadas)[(*quant) - 1].nome,
+               (*Chamadas)[(*quant) - 1].endereco,
+               (*Chamadas)[(*quant) - 1].tipoEmergencia,
+               (*Chamadas)[(*quant) - 1].dataHora,
+               (*Chamadas)[(*quant) - 1].telefone);
 
+        printf("-----------------------------------------------------------------------------------------------------\n");
+
+
+        printf(COR_VERDE "\nStatus: FINALIZADO\n" COR_RESET);
+
+    } else {
+        printf("\nNenhuma chamada na fila.\n");
+    }
+}
+
+void buscarChamada(ChamadaEmergencia* Chamadas, int quant) {
+    limparTela();
+
+    printf(COR_VERMELHA "\n========== BUSCAR EMERGENCIA ==========\n" COR_RESET);
+
+    if (quant <= 0) {
+        printf("\nNenhuma chamada cadastrada.\n");
+        return;
+    }
+
+    printf("Digite o protocolo: ");
+    int inputuser;
+    scanf("%d", &inputuser);
+
+    int encontrado = 0;
+
+    for (int i = 0; i < quant; i++) {
+        if (Chamadas[i].protocolo == inputuser) {
+            printf("\n---------------- RESULTADO ----------------\n");
+            printf("-----------------------------------------------------------------------------------------------------\n");
+
+            printf("| %-8s | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+                   "Prot", "Nome", "Endereco", "Tipo", "Data/Hora", "Telefone");
+            printf("-----------------------------------------------------------------------------------------------------\n");
+
+            printf("| %-8d | %-15s | %-20s | %-15s | %-12s | %-12s |\n",
+                   Chamadas[i].protocolo,
+                   Chamadas[i].nome,
+                   Chamadas[i].endereco,
+                   Chamadas[i].tipoEmergencia,
+                   Chamadas[i].dataHora,
+                   Chamadas[i].telefone);
+
+            printf("-----------------------------------------------------------------------------------------------------\n");
+
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("\nProtocolo nao encontrado.\n");
+    }
 }

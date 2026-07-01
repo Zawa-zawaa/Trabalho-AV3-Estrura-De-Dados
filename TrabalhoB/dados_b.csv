@@ -1,13 +1,3 @@
-1001,João Silva,Rua das Flores 120,Fogo em residência,08:10,998765432
-1002,Maria Oliveira,Av. Central 455,Acidente de trânsito,08:25,991234567
-1003,Carlos Souza,Escola Municipal Centro,Briga escolar,08:40,992345678
-1004,Ana Santos,Hospital São Lucas,Queda de energia,09:05,993456789
-1005,Pedro Lima,Rua da Praia 77,Afogamento suspeito,09:20,994567890
-1006,Fernanda Dias,Shopping Bahia Norte,Incêndio em loja,09:35,995678901
-1007,Lucas Rocha,Terminal Rodoviário,Assalto em andamento,09:50,996789012
-1008,Mariana Costa,Bairro Liberdade 300,Deslizamento de terra,10:10,997890123
-1009,Ricardo Alves,Condomínio Sol Nascente,Fuga de gás,10:25,998901234
-1010,Beatriz Souza,Parque da Cidade,Acidente com bicicleta,10:40,999012345
-1011,Tiago Mendes,Av. Brasil 900,Desmaio em via pública,11:00,990123456
-1012,Camila Ferreira,Universidade Central,Confusão generalizada,11:15,991234567
-1013,ivan,aguas claras,morreu,12:20,71997207156
+protocolo,nome,endereco,tipoEmergencia,dataHora,telefone
+1001,ivan,a,a,a,a
+1002,a,a,a,a,a
