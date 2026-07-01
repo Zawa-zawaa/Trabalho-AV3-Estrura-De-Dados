@@ -23,19 +23,25 @@
 ```text
 .
 ├── TrabalhoA/
-│   ├── src/
-│   ├── Makefile
-│   └── README (opcional)
+│   ├── main.c
+│   ├── triagem.c
+│   ├── dados_a.csv
+│   ├── triagem.h
+│   └── README.md
 │
 ├── TrabalhoB/
-│   ├── src/
-│   ├── Makefile
-│   └── README (opcional)
+│   ├── main.c
+│   ├── emergencia.c
+│   ├── dados_b.csv
+│   ├── emergencia.h
+│   └── README.md
 │
 ├── TrabalhoC/
-│   ├── src/
-│   ├── Makefile
-│   └── README (opcional)
+│   ├── main.c
+│   ├── fila.c
+│   ├── trabalhos.csv
+│   ├── fila.h
+│   └── README.md
 │
 └── README.md
 ```
@@ -172,7 +178,6 @@ deve ser possível buscar, listar e cancelar trabalhos.
 
 ```bash
 cd TrabalhoC
-make
 ```
 
 ou
@@ -194,37 +199,6 @@ gcc *.c -o programa
 
 ---
 
-# 🚀 Como Avaliar os Trabalhos
-
-Cada trabalho é independente.
-
-Compile e execute separadamente:
-
-```bash
-cd TrabalhoA
-make
-./programa
-```
-
-```bash
-cd TrabalhoB
-make
-./programa
-```
-
-```bash
-cd TrabalhoC
-make
-./programa
-```
-
----
-
-# ⚠️ Dificuldades Encontradas
-
-Descreva aqui as principais dificuldades enfrentadas durante o desenvolvimento.
-
----
 
 # 📝 Considerações Finais
 
