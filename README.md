@@ -1,6 +1,6 @@
-# 📘 README — Trabalhos da Disciplina AV3
+# 📘 README — Trabalhos da Disciplina (Estrutura de dados) AV3
 
-> Repositório contendo os Trabalhos A, B e C da disciplina.
+> Repositório contendo os Trabalhos A, B e C de Estrutura de dados.
 
 ---
 
