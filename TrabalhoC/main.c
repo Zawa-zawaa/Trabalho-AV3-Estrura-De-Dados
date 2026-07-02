@@ -23,7 +23,7 @@ int main() {
                 processarTrabalho(&fNormal, &fPrioritaria);
                 break;
             case 3:
-                listarTrabalhos(&fNormal, &fPrioritaria);
+                listardados_c(&fNormal, &fPrioritaria);
                 break;
             case 4:
                 cancelarTrabalho(&fNormal, &fPrioritaria);

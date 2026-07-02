@@ -39,7 +39,7 @@ void exibirMenu();
 void pausarTela();
 int gerarID(Fila* fNormal, Fila* fPrioritaria);
 int idExiste(Fila* fNormal, Fila* fPrioritaria, int id);
-int contarTrabalhos(Fila* fNormal, Fila* fPrioritaria);
+int contardados_c(Fila* fNormal, Fila* fPrioritaria);
 int tipoValido(char tipo);
 int senhaExiste(Fila* fNormal, Fila* fPrioritaria, int id);
 
@@ -49,7 +49,7 @@ void inserirTrabalho(Fila* fNormal, Fila* fPrioritaria);
 void inserirTrabalhoDireto(Fila* fNormal, Fila* fPrioritaria, int id, char nomeArquivo[], int pags, char tipo);
 void processarTrabalho(Fila* fNormal, Fila* fPrioritaria);
 void cancelarTrabalho(Fila* fNormal, Fila* fPrioritaria);
-void listarTrabalhos(Fila* fNormal, Fila* fPrioritaria);
+void listardados_c(Fila* fNormal, Fila* fPrioritaria);
 
 // Persistência e memória
 void salvarCSV(Fila* fNormal, Fila* fPrioritaria);
