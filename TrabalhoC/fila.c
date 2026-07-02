@@ -28,7 +28,7 @@ int idExiste(Fila* fNormal, Fila* fPrioritaria, int id) {
     return 0;
 }
 
-int contarTrabalhos(Fila* fNormal, Fila* fPrioritaria) {
+int contardados_c(Fila* fNormal, Fila* fPrioritaria) {
     int cont = 0;
     NoFila* atual = fNormal->inicio;
 
@@ -133,7 +133,7 @@ void processarTrabalho(Fila* fNormal, Fila* fPrioritaria) {
     free(paraRemover);
 }
 
-void listarTrabalhos(Fila* fNormal, Fila* fPrioritaria) {
+void listardados_c(Fila* fNormal, Fila* fPrioritaria) {
     NoFila* atual;
 
     printf(COR_AZUL "\nFila Prioritaria:\n" COR_RESET);
@@ -209,7 +209,7 @@ void cancelarTrabalho(Fila* fNormal, Fila* fPrioritaria) {
 }
 
 void salvarCSV(Fila* fNormal, Fila* fPrioritaria) {
-    FILE* arquivo = fopen("trabalhos.csv", "w");
+    FILE* arquivo = fopen("dados_c.csv", "w");
     NoFila* atual;
 
     if (!arquivo) {
@@ -234,15 +234,15 @@ void salvarCSV(Fila* fNormal, Fila* fPrioritaria) {
     }
 
     fclose(arquivo);
-    printf(COR_VERDE "Trabalhos salvos em trabalhos.csv\n" COR_RESET);
+    printf(COR_VERDE "dados_c salvos em dados_c.csv\n" COR_RESET);
 }
 
 void carregarCSV(Fila* fNormal, Fila* fPrioritaria) {
-    FILE* arquivo = fopen("trabalhos.csv", "r");
+    FILE* arquivo = fopen("dados_c.csv", "r");
     char linha[256];
 
     if (!arquivo) {
-        printf(COR_AMARELA "Arquivo trabalhos.csv nao encontrado. Iniciando com filas vazias.\n" COR_RESET);
+        printf(COR_AMARELA "Arquivo dados_c.csv nao encontrado. Iniciando com filas vazias.\n" COR_RESET);
         return;
     }
 
@@ -256,7 +256,7 @@ void carregarCSV(Fila* fNormal, Fila* fPrioritaria) {
     }
 
     fclose(arquivo);
-    printf(COR_VERDE "Trabalhos carregados do arquivo trabalhos.csv\n" COR_RESET);
+    printf(COR_VERDE "dados_c carregados do arquivo dados_c.csv\n" COR_RESET);
 }
 
 void liberarFila(Fila* f) {
@@ -286,10 +286,10 @@ void exibirMenu() {
     printf(COR_AMARELA "========================================\n" COR_RESET);
     printf(" 1 - Inserir trabalho\n");
     printf(" 2 - Processar trabalho\n");
-    printf(" 3 - Listar trabalhos\n");
+    printf(" 3 - Listar dados_c\n");
     printf(" 4 - Cancelar trabalho\n");
     printf(" 5 - Salvar e Sair\n");
-    printf(" 6 - Carregar trabalhos de arquivo\n");
+    printf(" 6 - Carregar dados_c de arquivo\n");
     printf(COR_AMARELA "========================================\n" COR_RESET);
     printf(" Escolha uma opcao: ");
 }
