@@ -3,6 +3,8 @@
 
 
 int main() {
+    setlocale(LC_ALL, "portuguese");
+    // abertura do arquivo
     FILE* arquivo = fopen("dados_b.csv", "r");
     // contagem de dados e alocacao dinamica
     int quant;
