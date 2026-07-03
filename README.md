@@ -10,9 +10,7 @@
 |------|-----------|
 | Ivan Ramos De Oliveira Mourao | 2250104079 |
 | Gustavo Gomes Ferraz | 2250205363 |
-| Nome do Integrante 3 | 00000000 |
-| Nome do Integrante 4 | 00000000 |
-| Nome do Integrante 5 | 00000000 |
+
 
 **Turma:** A
 
@@ -89,13 +87,6 @@ gcc *.c -o programa
 ```bash
 ./programa
 ```
-
-### Observações
-
-- Observação 1
-- Observação 2
-- Limitações, se houver.
-
 ---
 
 # 🅱️ Trabalho B
@@ -191,13 +182,6 @@ gcc *.c -o programa
 ```bash
 ./programa
 ```
-
-### Observações
-
-- Observação 1
-- Observação 2
-
----
 
 
 # 📝 Considerações Finais
