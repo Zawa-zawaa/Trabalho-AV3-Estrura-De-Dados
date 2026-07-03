@@ -11,11 +11,12 @@
 | Ivan Ramos De Oliveira Mourao | 2250104079 |
 | Gustavo Gomes Ferraz | 2250205363 |
 
+**Turma:** A
+
+---
+
 |------|-----------|
 | Vídeo de apresentação | https://youtu.be/Omz7vC7pDB8 |
-
-
-**Turma:** A
 
 ---
 
