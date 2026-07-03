@@ -182,8 +182,3 @@ gcc *.c -o programa
 ```bash
 ./programa
 ```
-
-
-# 📝 Considerações Finais
-
-Caso necessário, inclua informações adicionais importantes para a execução ou avaliação dos programas.
