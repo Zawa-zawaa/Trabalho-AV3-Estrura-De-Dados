@@ -15,7 +15,6 @@
 
 ---
 
-|------|-----------|
 | Vídeo de apresentação | https://youtu.be/Omz7vC7pDB8 |
 
 ---
