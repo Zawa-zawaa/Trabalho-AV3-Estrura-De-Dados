@@ -14,8 +14,8 @@
 **Turma:** A
 
 ---
-
-| Vídeo de apresentação | https://youtu.be/Omz7vC7pDB8 |
+# 🎥 Apresentação em Vídeo
+ Link da Apresentação: https://youtu.be/Omz7vC7pDB8
 
 ---
 
